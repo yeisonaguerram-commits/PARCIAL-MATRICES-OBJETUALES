@@ -49,24 +49,32 @@ public class Metodos {
 
     public ObjetoClases[][] OrganizarMatriz(ObjetoClases[][] Almacen) {
         for (int i = 0; i < Almacen.length; i++) {
-            for (int j = 0; j < Almacen.length; j++) {
-                for (int i2 = 0; i2 < Almacen.length; i2++) {
-                    for (int j2 = 0; j2 < Almacen.length; j2++) {
-                        if (Almacen[i][j] != null && Almacen[i][j].getEstado() == 1 && Almacen[i2][j2] != null && Almacen[i2][j2].getEstado() == 1) {
-                            if (Almacen[i][j].getNombre().equalsIgnoreCase(Almacen[i2][j2].getNombre())) {
-                                Almacen[i2][j2] = null;
+            for (int j = 0; j < Almacen[i].length; j++) {
 
-                                
-                            } // fin if 2
-                             System.out.println("Seleccione la opcion hasta limpiar el almacen");
-                             return Almacen; 
-                        } // fin if   
-                          
-                    } // fin for 4        [i][j]  
-                } // fin for 3            [][]
+
+
+                if (Almacen[i][j] == null || Almacen[i][j].getEstado() != 1) {
+                    continue;
+                }
+
+                String nombreactual = Almacen[i][j].getNombre();
+
+                for (int i2 = 0; i2 < Almacen.length; i2++) {
+                    for (int j2 = 0; j2 < Almacen[i2].length; j2++) {
+                        if ((i == i2 && j == j2)) {
+                            continue;
+                        } // fin if 1
+
+                        if (Almacen[i2][j2] != null && Almacen[i2][j2].getEstado() == 1 && nombreactual.equalsIgnoreCase(Almacen[i2][j2].getNombre())) {
+                            Almacen[i2][j2] = null;
+
+
+                        } // fin if 2
+                    } // fin for 4
+                } // fin for 3
             } // fin for 2
-        } // fin for 1
-        System.out.println("organizao");
+        } // fin fori 1
+        System.out.println("Almacen organizado");
         return Almacen;
     } // fin metodo organizar
 
